@@ -1,0 +1,1 @@
+class pMdhReviveBleedoutTime{title = "MDH Revive BleedOutTime";texts[] = {"2 min", "3 min", "4 min", "5 min", "6 min", "10 min", "Disabled"};values[] = {120, 180, 240, 300, 360, 600, 4^9};default = 4^9;};

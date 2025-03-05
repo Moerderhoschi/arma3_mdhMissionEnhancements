@@ -1,0 +1,1 @@
+class pDisableRadioMessages{title = "Radio messages to be heard and shown in the left lower corner";texts[] = {"Enabled", "Disabled"};values[] = {0, 1};default = 1;};

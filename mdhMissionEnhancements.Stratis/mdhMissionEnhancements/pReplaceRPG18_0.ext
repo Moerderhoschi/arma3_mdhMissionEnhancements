@@ -1,0 +1,1 @@
+class pReplaceRPG18{title = "AI Replace RPG-18 with RPG-7";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 0;};

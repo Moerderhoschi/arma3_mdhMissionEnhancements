@@ -1,0 +1,1 @@
+class pAvoidAiFleeing{title = "AI avoid Fleeing";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};	

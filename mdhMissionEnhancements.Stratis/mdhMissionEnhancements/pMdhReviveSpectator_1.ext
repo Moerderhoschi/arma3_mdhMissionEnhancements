@@ -1,0 +1,1 @@
+class pMdhReviveSpectator{title = "MDH Revive Spectator for incapacitated players";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};

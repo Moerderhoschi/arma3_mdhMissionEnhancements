@@ -1,0 +1,1 @@
+class pCustomAimCoef{title = "Player AimCoef";texts[] = {"Standard - 1.00","Low - 0.15"};values[] = {0, 1};default = 1;};

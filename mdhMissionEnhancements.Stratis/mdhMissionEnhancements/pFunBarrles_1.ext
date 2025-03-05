@@ -1,0 +1,1 @@
+class pFunBarrles{title = "Red barrels explode and fly around, because they are red barrels";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};

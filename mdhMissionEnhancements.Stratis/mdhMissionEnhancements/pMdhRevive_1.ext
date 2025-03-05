@@ -1,0 +1,1 @@
+class pMdhRevive{title = "Revive System";texts[] = {"MDH Revive", "Arma 3 Revive", "None"};values[] = {1, 2, 0};default = 1;};

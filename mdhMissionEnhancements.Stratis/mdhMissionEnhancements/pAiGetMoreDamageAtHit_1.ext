@@ -1,0 +1,1 @@
+class pAiGetMoreDamageAtHit{title = "AI Take Double Hit Damage";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};
