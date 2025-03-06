@@ -8,7 +8,7 @@ Features that can be enabled / disabled with Missionparameters:
 - disable all AI conversations
 - check if all players are incapacitated and end mission
 - fun barrels with explosions and flying around (original script by JBOY)
-- bigger vehicles explosions
+- bigger vehicles explosions for Ammo / Fuel vehicles
 - big fueltank explosions (CUP Chernarus fueltanks)
 - player map markers
 - foggy breath for all units (original script by tpw)
@@ -16,10 +16,10 @@ Features that can be enabled / disabled with Missionparameters:
 - set lower player aim coefficient for easier aiming
 - inflame fireplaces at nighttime
 - replace RPG18 with RPG-7 when using CUP units
-- replace AI magazines with tracer variants
-- avoid AI laying down
+- replace AI magazines with tracer variants (MDH AI Tracer script version)
+- avoid AI laying down (MDH AI Avoid Laydown script version)
 - avoid AI fleeing
-- AI units go down to the ground when they get hit
+- AI units go down to the ground when they get hit and bleeding out (MDH Ragdoll script version)
 - MDH Revive
 - MDH search and destroy players function
 
