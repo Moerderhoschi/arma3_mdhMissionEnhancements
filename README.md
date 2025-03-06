@@ -4,8 +4,7 @@ MDH Mission Enhancements is a set of Scripts to make Arma 3 community made missi
 
 Features that can be enabled / disabled with Missionparameters:
 - MDH Revive
-- AI units go down to the ground when they get hit and bleeding out
-- (MDH Ragdoll script version)
+- AI units go down to the ground when they get hit and bleeding out (MDH Ragdoll script version)
 - replace AI magazines with tracer variants (MDH AI Tracer script version)
 - avoid AI laying down (MDH AI Avoid Laydown script version)
 - avoid AI fleeing
