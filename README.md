@@ -7,11 +7,11 @@ Features that can be enabled / disabled with Missionparameters:
 - disable radio messages to be heard and shown in the left lower corner with
 - disable all AI conversations
 - check if all players are incapacitated and end mission
-- fun barrels with explosions and flying around
+- fun barrels with explosions and flying around (original script by JBOY)
 - bigger vehicles explosions
 - big fueltank explosions (CUP Chernarus fueltanks)
 - player map markers
-- foggy breath for all units
+- foggy breath for all units (original script by tpw)
 - disable fatigue system
 - set lower player aim coefficient for easier aiming
 - inflame fireplaces at nighttime
