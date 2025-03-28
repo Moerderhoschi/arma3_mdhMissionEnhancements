@@ -1,1 +1,1 @@
-class pFuelTanksBigExplosions{title = "Fueltanks(Chernarus) explode Big";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 0;};
+class pFuelTanksBigExplosions{title = "Fueltanks(Chernarus) bigger explosion";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 0;};

@@ -1,0 +1,1 @@
+class pAiStayLowInCombat{title = "AI Stay low in Combat";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 0;};

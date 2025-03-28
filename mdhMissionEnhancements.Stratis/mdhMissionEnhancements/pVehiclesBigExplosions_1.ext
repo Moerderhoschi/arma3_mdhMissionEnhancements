@@ -1,1 +1,1 @@
-class pVehiclesBigExplosions{title = "Fuel / Ammo Vehicles explode Big";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};
+class pVehiclesBigExplosions{title = "Fuel / Ammo Vehicles bigger explosion";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};

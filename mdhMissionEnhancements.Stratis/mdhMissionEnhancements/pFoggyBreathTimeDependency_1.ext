@@ -1,1 +1,1 @@
-class pFoggyBreathTimeDependency{title = "Foggy Breath Time Dependency, only between 17 and 8 o clock";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};
+class pFoggyBreathTimeDependency{title = "Foggy Breath Time Dependency, only between sundown and sunrise";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};

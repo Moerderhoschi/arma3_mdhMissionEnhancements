@@ -1,0 +1,1 @@
+class pPlayerSetUnitTrait{title = "Player is Engineer(can repair vehicles with toolkit) / ExplosiveSpec.(can defuse mines with toolkit) / Medic(can treat self and others with medikit) / UAVHacker(can use drones)";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};

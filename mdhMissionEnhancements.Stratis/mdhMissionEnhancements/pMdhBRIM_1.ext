@@ -1,0 +1,1 @@
+class pMdhBRIM{title = "MDH Bohemia Revive Icon Marker";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};

@@ -1,0 +1,1 @@
+class pMdhFpvDroneRpg{title = "MDH FPV Drone RPG (players with UAV Terminals and Backpacks with RPGs can assemble a RPG Drone)";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};

@@ -1,1 +1,1 @@
-class pAvoidAiLayingDown{title = "AI avoid Laydown";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};	
+class pAvoidAiLayingDown{title = "AI avoid Laydown (overwrites AI Stay low in Combat)";texts[] = {"Enabled", "Disabled"};values[] = {1, 0};default = 1;};	

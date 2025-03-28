@@ -3,27 +3,5 @@ respawnOnStart = 0;
 
 class Params
 {
-	#include "mdhMissionEnhancements\pRandomTime_1.ext"
-	#include "mdhMissionEnhancements\pDisableFatigue_1.ext"
-	#include "mdhMissionEnhancements\pCustomAimCoef_1.ext"
-	#include "mdhMissionEnhancements\pPlayerMapMarkers_1.ext"
-	#include "mdhMissionEnhancements\pFoggyBreath_1.ext"
-	#include "mdhMissionEnhancements\pFoggyBreathTimeDependency_1.ext"
-	#include "mdhMissionEnhancements\pDisableRadioMessages_1.ext"
-	#include "mdhMissionEnhancements\pDisableConversation_1.ext"
-	#include "mdhMissionEnhancements\pAvoidAiFleeing_1.ext"
-	#include "mdhMissionEnhancements\pAvoidAiLayingDown_1.ext"
-	#include "mdhMissionEnhancements\pAiRagdollAtHit_1.ext"
-	#include "mdhMissionEnhancements\pAiGetMoreDamageAtHit_0.ext"
-	#include "mdhMissionEnhancements\pReplaceAiMagsWithTracer_1.ext"
-	#include "mdhMissionEnhancements\pReplaceRPG18_1.ext"
-	#include "mdhMissionEnhancements\pFunBarrles_1.ext"
-	#include "mdhMissionEnhancements\pVehiclesBigExplosions_1.ext"
-	#include "mdhMissionEnhancements\pFuelTanksBigExplosions_1.ext"
-	#include "mdhMissionEnhancements\pInflameFiresAtNight_1.ext"
-	#include "mdhMissionEnhancements\pMdhRevive_1.ext"
-	#include "mdhMissionEnhancements\pMdhReviveBleedoutTime_0.ext"
-	#include "mdhMissionEnhancements\pMdhReviveAutoReviveTime_240.ext"
-	#include "mdhMissionEnhancements\pMdhReviveSpectator_1.ext"
-	#include "mdhMissionEnhancements\pCheckAllPlayerIncapacitated_0.ext"
+	#include "mdhMissionEnhancements\mdhME_template_Respawn.ext"
 };
