@@ -1461,7 +1461,7 @@ if (missionNameSpace getVariable ["pAiGetMoreDamageAtHit",0] == 1 OR missionName
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// MDH REVIVE FOR ALL PLAYERS(by Moerderhoschi) - v2025-03-26
+// MDH REVIVE FOR ALL PLAYERS(by Moerderhoschi) - v2025-04-03
 // github: https://github.com/Moerderhoschi/arm3_mdhRevive
 // steam:  https://steamcommunity.com/sharedfiles/filedetails/?id=3435005893
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1469,7 +1469,7 @@ if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
 {
 	0 spawn
 	{
-		_diary = 0;
+		_diary  = 0;
 		if (hasInterface) then
 		{
 			_diary =
@@ -1490,6 +1490,19 @@ if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
 		
 				if(_c) then
 				{
+					mdhReviveModBriefingFnc =
+					{
+						if (isServer OR serverCommandAvailable "#logout") then
+						{
+							missionNameSpace setVariable[_this#0,_this#1,true];
+							systemChat (_this#2);
+						}
+						else
+						{
+							systemChat "ONLY ADMIN CAN CHANGE OPTION";
+						};
+					};
+
 					player createDiaryRecord
 					[
 						"MDH Mods",
@@ -1503,8 +1516,33 @@ if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
 							+ '- You can drag other players while they unconscious.<br/>'
 							+ '- You have a Spectatorcamera while unconscious.<br/>'
 							+ '- You are immortal while on the ground and unconscious.<br/>'
-							+ '- Autorevive option is available.<br/>'
-							+ '- Bleedout option is available.<br/>'
+							+ '- Autorevive option is available (default 4 min).<br/>'
+							+ '- Bleedout option is available (default deact).<br/>'
+							+ '- Spectatorcamera option is available (default units side player).<br/>'
+							+ '<br/>'
+							+ 'set Autorevive: '
+							+    '<font color="#33CC33"><execute expression = "[''mdhReviveAutoReviveTime'',120,''MDH Revive Autorevive set 2 min''] call mdhReviveModBriefingFnc">2 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''mdhReviveAutoReviveTime'',180,''MDH Revive Autorevive set 3 min''] call mdhReviveModBriefingFnc">3 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''mdhReviveAutoReviveTime'',240,''MDH Revive Autorevive set 4 min''] call mdhReviveModBriefingFnc">4 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''mdhReviveAutoReviveTime'',300,''MDH Revive Autorevive set 5 min''] call mdhReviveModBriefingFnc">5 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''mdhReviveAutoReviveTime'',360,''MDH Revive Autorevive set 6 min''] call mdhReviveModBriefingFnc">6 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''mdhReviveAutoReviveTime'',600,''MDH Revive Autorevive set 10 min''] call mdhReviveModBriefingFnc">10 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''mdhReviveAutoReviveTime'',4^9,''MDH Revive Autorevive deactivated''] call mdhReviveModBriefingFnc">deact</execute></font color>'
+							+ '<br/>'
+							+ 'set BleedoutTime: '
+							+    '<font color="#33CC33"><execute expression = "[''bis_revive_Bleedoutduration'',120,''MDH Revive BleedoutTime set 2 min''] call mdhReviveModBriefingFnc">2 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''bis_revive_Bleedoutduration'',180,''MDH Revive BleedoutTime set 3 min''] call mdhReviveModBriefingFnc">3 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''bis_revive_Bleedoutduration'',240,''MDH Revive BleedoutTime set 4 min''] call mdhReviveModBriefingFnc">4 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''bis_revive_Bleedoutduration'',300,''MDH Revive BleedoutTime set 5 min''] call mdhReviveModBriefingFnc">5 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''bis_revive_Bleedoutduration'',360,''MDH Revive BleedoutTime set 6 min''] call mdhReviveModBriefingFnc">6 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''bis_revive_Bleedoutduration'',600,''MDH Revive BleedoutTime set 10 min''] call mdhReviveModBriefingFnc">10 min</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''bis_revive_Bleedoutduration'',4^9,''MDH Revive BleedoutTime deactivated''] call mdhReviveModBriefingFnc">deact</execute></font color>'
+							+ '<br/>'
+							+ 'set Spectator: '
+							+    '<font color="#33CC33"><execute expression = "[''pMdhReviveSpectator'',1,''MDH Revive Spectatorcamera set units side player''] call mdhReviveModBriefingFnc">units side player</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''pMdhReviveSpectator'',2,''MDH Revive Spectatorcamera set all units''] call mdhReviveModBriefingFnc">all units</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''pMdhReviveSpectator'',0,''MDH Revive Spectatorcamera deactivated''] call mdhReviveModBriefingFnc">deact</execute></font color>'
+							+ '<br/>'
 							+ '<br/>'
 							+ 'If you have any question you can contact me at the steam workshop page.<br/>'
 							+ '<br/>'
@@ -1802,9 +1840,9 @@ if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
 				player setVariable["mdhReviveDragEnableTime",time + 5,true];
 				_endTime = time + 3 + mdhReviveAutoReviveTime;
 				_side = player getVariable ["mdhRevivePlayerSide",west];
-				if (missionNameSpace getVariable["pMdhReviveSpectator", 1] == 1) then
+				if (missionNameSpace getVariable["pMdhReviveSpectator", 1] > 0) then
 				{
-					if (name player == "Moerderhoschi") then
+					if (missionNameSpace getVariable["pMdhReviveSpectator", 2] == 2 OR name player == "Moerderhoschi") then
 					{
 						["Initialize",[player,[]             ,true   ,true           ,true          ,false        ,true             ,false             ,true      ,true]]call BIS_fnc_EGSpectator;
 					}

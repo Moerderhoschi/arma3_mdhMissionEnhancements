@@ -21,9 +21,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={2439.0503,86.146881,5642.2793};
-		dir[]={-0.87632358,-0.47113502,0.10054313};
-		up[]={-0.46806991,0.88206017,0.053702999};
-		aside[]={0.11398809,1.829867e-07,0.99349761};
+		dir[]={-0.85769778,-0.46056181,0.22860894};
+		up[]={-0.44503152,0.88762534,0.11861771};
+		aside[]={0.25755244,8.2320184e-08,0.96628273};
 	};
 };
 binarizationWanted=0;
@@ -2428,7 +2428,7 @@ class Mission
 			position[]={2428.219,69.700905,5649.1479};
 			class Attributes
 			{
-				condition="!isMultiplayer";
+				condition="!isMultiplayer && name player == ""Moerderhoschi""";
 				onActivation="player allowDamage false";
 				sizeA=0;
 				sizeB=0;
