@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////////////
-// MDH Mission Enhancements scripts for Arma missions(by Moerderhoschi) - v2025-03-28
+// MDH Mission Enhancements scripts for Arma missions(by Moerderhoschi) - v2025-04-03
 // github: https://github.com/Moerderhoschi/arma3_mdhMissionEnhancements
 // steam:  https://steamcommunity.com/sharedfiles/filedetails/?id=3439120487
 /////////////////////////////////////////////////////////////////////////////////////
@@ -919,7 +919,7 @@ if (missionNameSpace getVariable ["pAvoidAiFleeing",0] == 1) then
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// MDH BOHEMIA REVIVE ICON MARKER MOD(by Moerderhoschi) - v2025-03-16
+// MDH BOHEMIA REVIVE ICON MARKER MOD(by Moerderhoschi) - v2025-04-03
 // github: https://github.com/Moerderhoschi/arma3_mdhBRIM
 // steam mod version: https://steamcommunity.com/sharedfiles/filedetails/?id=753249732
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -958,6 +958,12 @@ if (missionNameSpace getVariable ["pMdhBRIM",0] == 1 && {isMultiplayer}) then
 		
 				if(_c) then
 				{
+					mdhBRIMbriefingFnc =
+					{
+						missionNameSpace setVariable[_this#0,_this#1];
+						systemChat (_this#2);
+					};
+
 					player createDiaryRecord
 					[
 						"MDH Mods",
@@ -965,6 +971,11 @@ if (missionNameSpace getVariable ["pMdhBRIM",0] == 1 && {isMultiplayer}) then
 							_t,
 							(
 							  '<br/>Bohemia Revive Icon Marker is a mod, created by Moerderhoschi for Arma 3, to add an icon and Mapmarker to unconscious players. '
+							+ '<br/><br/>'
+							+ 'set MDH BRIM Unconscious Map Markers: '
+							+    '<font color="#33CC33"><execute expression = "[''pBRIMMapMarkers'',1,''MDH BRIM Unconscious Map Markers ON''] call mdhBRIMbriefingFnc">ON</execute></font color>'
+							+ ' / <font color="#33CC33"><execute expression = "[''pBRIMMapMarkers'',0,''MDH BRIM Unconscious Map Markers OFF''] call mdhBRIMbriefingFnc">OFF</execute></font color>'
+							+ '<br/><br/>'
 							+ 'If you have any question you can contact me at the steam workshop page.<br/>'
 							+ '<br/>'
 							+ '<img image="'+_icon+'"/>'
@@ -1015,9 +1026,9 @@ if (missionNameSpace getVariable ["pMdhBRIM",0] == 1 && {isMultiplayer}) then
 					];
 				};
 
-				if (missionNameSpace getVariable ["pPlayerMapMarkers",0] == 0) then
+				{deleteMarkerLocal _x} forEach _markers;
+				if (missionNameSpace getVariable ["pPlayerMapMarkers",0] == 0 && {missionNameSpace getVariable ["pBRIMMapMarkers",1] == 1}) then
 				{
-					{deleteMarkerLocal _x} forEach _markers;
 					{
 						if (side group player getFriend side group _x > 0.5 && {alive _x} && {(lifeState _x) == "INCAPACITATED"}) then
 						{
@@ -1496,6 +1507,10 @@ if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
 						{
 							missionNameSpace setVariable[_this#0,_this#1,true];
 							systemChat (_this#2);
+							if ((_this#0) == "bis_revive_Bleedoutduration") then
+							{
+								missionNameSpace setVariable["pMdhReviveBleedoutTime",_this#1,true];
+							};
 						}
 						else
 						{
@@ -1563,11 +1578,11 @@ if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
 			call _diary;
 		};
 
+		mdhReviveAutoReviveTime = missionNameSpace getVariable["pMdhReviveAutoReviveTime", 240];
 		sleep (1 + random 1);
 		bis_reviveParam_mode = 1;
 		bis_revive_unconsciousStateMode = 0;
 		_p = missionNameSpace getVariable ["pMdhRevive",0];
-		mdhReviveAutoReviveTime = missionNameSpace getVariable["pMdhReviveAutoReviveTime", 240];
 		sleep 0.5;
 		if (hasInterface) then {call BIS_fnc_reviveInit};
 		sleep 1;
