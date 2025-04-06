@@ -4,12 +4,16 @@ MDH Mission Enhancements is a set of Scripts to make Arma 3 community made missi
 
 Features that can be enabled / disabled with Missionparameters:
 - MDH Revive
+- MDH Bohemia Revive Icon Marker
 - AI units go down to the ground when they get hit and bleeding out (MDH Ragdoll script version)
+- MDH FPV Drone RPG script version
 - replace AI magazines with tracer variants (MDH AI Tracer script version)
 - avoid AI laying down (MDH AI Avoid Laydown script version)
+- AI Stay low in Combat (MDH AI Stay low in Combat script version)
 - avoid AI fleeing
 - foggy breath for all units (original script by tpw)
 - player map markers
+- every player can use Toolkit and repair vehicles, use medkit and use UAVs
 - bigger vehicles explosions for Ammo / Fuel vehicles
 - big fueltank explosions (CUP Chernarus fueltanks)
 - replace RPG18 with RPG-7 when using CUP units
@@ -22,6 +26,8 @@ Features that can be enabled / disabled with Missionparameters:
 - disable all AI conversations
 - check if all players are incapacitated and end mission
 - MDH search and destroy players function
+- MDH Area Marker function (mdhUnitAreaMarkerfunc)
+- MDH CAS support function (mdhCASfunc)
 
 Dowload on Steam: https://steamcommunity.com/sharedfiles/filedetails/?id=3439120487
 
