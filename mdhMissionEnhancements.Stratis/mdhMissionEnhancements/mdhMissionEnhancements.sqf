@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////////////
-// MDH Mission Enhancements scripts for Arma missions(by Moerderhoschi) - v2025-04-03
+// MDH Mission Enhancements scripts for Arma missions(by Moerderhoschi) - v2025-04-05
 // github: https://github.com/Moerderhoschi/arma3_mdhMissionEnhancements
 // steam:  https://steamcommunity.com/sharedfiles/filedetails/?id=3439120487
 /////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ pMdhBRIM                     = ["pMdhBRIM",                     1] call BIS_fnc_
 pCheckAllPlayerIncapacitated = ["pCheckAllPlayerIncapacitated", 0] call BIS_fnc_getParamValue; // CHECK IF ALL PLAYERS ARE INCAPACITATED AND END MISSION (LOOP)
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-// RANDOM MISSION STARTTIME - v2025-02-09
+// RANDOM MISSION STARTTIME - v2025-04-05
 /////////////////////////////////////////////////////////////////////////////////////////////
 if (missionNameSpace getVariable ["pRandomTime",0] > 0) then
 {
@@ -41,13 +41,20 @@ if (missionNameSpace getVariable ["pRandomTime",0] > 0) then
 		_rM = 1;
 		_rH = missionNameSpace getVariable["pRandomTimeHour",selectRandom[0,6,7,15,16]];
 		_rMin = missionNameSpace getVariable["pRandomTimeMinute",selectRandom[50]];
+		_e = date call BIS_fnc_sunriseSunsetTime;
+		_a = floor(_e#0);
+		_b = ((_e#0) - _a) * 60;
+		_c = _b + 20;
+		_d = floor(_e#1);
+		_e = ((_e#1) - _d) * 60;
+
 		switch pRandomTime do
 		{
 			case 1: { _p = [2005,_rM,12,_rH,_rMin +ceil random 5]; [_p] remoteExec ["setDate"]}; // Random
-			case 2: { _p = [2005,_rM,12, 06,                  20]; [_p] remoteExec ["setDate"]}; // Early Morning
-			case 3: { _p = [2005,_rM,12, 06,                  50]; [_p] remoteExec ["setDate"]}; // Morning
+			case 2: { _p = [2005,_rM,12, _a,                  _b]; [_p] remoteExec ["setDate"]}; // Early Morning
+			case 3: { _p = [2005,_rM,12, _a,                  _c]; [_p] remoteExec ["setDate"]}; // Morning
 			case 4: { _p = [2005,_rM,12, 12,      ceil random 59]; [_p] remoteExec ["setDate"]}; // Noon
-			case 5: { _p = [2005,_rM,12, 17,                  20]; [_p] remoteExec ["setDate"]}; // Sundown
+			case 5: { _p = [2005,_rM,12, _d,                  _e]; [_p] remoteExec ["setDate"]}; // Sundown
 			case 6: { _p = [2005,_rM,12, 00,                  00]; [_p] remoteExec ["setDate"]}; // fullMoon
 			case 7: { _p = [2005,_rM,20, 02,                  00]; [_p] remoteExec ["setDate"]}; // darkNight
 			default { }
@@ -1063,7 +1070,7 @@ if (missionNameSpace getVariable ["pMdhBRIM",0] == 1 && {isMultiplayer}) then
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-// MDH FPV DRONE RPG(by Moerderhoschi) - v2025-03-16
+// MDH FPV DRONE RPG(by Moerderhoschi) - v2025-04-05
 // github: https://github.com/Moerderhoschi/arma3_mdhFPVDroneRPG
 // steam mod version: https://steamcommunity.com/sharedfiles/filedetails/?id=3361183268
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1159,14 +1166,21 @@ if (missionNameSpace getVariable ["pMdhFPVDroneRPG",0] == 1) then
 							_ct = "B_UAV_01_F" createVehicle (player getRelPos [1,0]);
 							_ct setDir getDir player;
 							(side group player) createVehicleCrew _ct;
-							_w = createSimpleObject ["\A3\Weapons_F_Exp\Launchers\RPG7\rocket_rpg7_item.p3d", getPos _ct];
+							//_w = createSimpleObject ["\A3\Weapons_F_Exp\Launchers\RPG7\rocket_rpg7_item.p3d", getPos _ct];
+							_w = createSimpleObject [(getText(configfile >> "CfgMagazines" >> _g >> "model")), getPos _ct];																									  
 							_w attachTo [_ct, [0, 0.15, 0.1]];
 							_w setdir 90;
+							if (_g == "CUP_OG7_M") then
+							{
+								_w attachTo [_ct, [0, 0.30, 0.1]];
+								_w setdir 180;
+							};
+							_g = getText(configfile >> "CfgMagazines" >> _g >> "ammo");
 							player connectTerminalToUAV _ct;
 							_w lockInventory true;
-							0 = [_ct, _w] spawn
+							0 = [_ct, _w, _g] spawn
 							{
-								params["_ct","_w"];
+								params["_ct","_w","_g"];
 								_a = [];
 								waitUntil {sleep 0.2;_a pushBack (speed _ct);if(count _a > 5)then{_a deleteAt 0}; !alive _ct};
 								if (alive _w) then
@@ -1174,7 +1188,8 @@ if (missionNameSpace getVariable ["pMdhFPVDroneRPG",0] == 1) then
 									deleteVehicle _w;
 									if ((selectMax _a) > 20) then
 									{
-										_t = "R_PG32V_F";
+										//_t = "R_PG32V_F";
+										_t = _g;
 										_b = _t createVehicle getPos _ct;
 										_b attachTo [_ct, [0, 0, 0.5]];
 										_b setdir 270;
