@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////////////
-// MDH Mission Enhancements scripts for Arma missions(by Moerderhoschi) - v2025-04-06
+// MDH Mission Enhancements scripts for Arma missions(by Moerderhoschi) - v2025-04-14
 // github: https://github.com/Moerderhoschi/arma3_mdhMissionEnhancements
 // steam:  https://steamcommunity.com/sharedfiles/filedetails/?id=3439120487
 /////////////////////////////////////////////////////////////////////////////////////
