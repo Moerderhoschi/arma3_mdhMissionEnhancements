@@ -1,8 +1,9 @@
 /////////////////////////////////////////////////////////////////////////////////////
-// MDH Mission Enhancements scripts for Arma missions(by Moerderhoschi) - v2025-04-14
+// MDH Mission Enhancements scripts for Arma missions(by Moerderhoschi) - v2025-04-21
 // github: https://github.com/Moerderhoschi/arma3_mdhMissionEnhancements
 // steam:  https://steamcommunity.com/sharedfiles/filedetails/?id=3439120487
 /////////////////////////////////////////////////////////////////////////////////////
+pParamPreset                 = ["pParamPreset",                 0] call BIS_fnc_getParamValue; // MDH MISSION PARAMETERS PRESET
 pRandomTime                  = ["pRandomTime",                  1] call BIS_fnc_getParamValue; // RANDOM MISSION STARTTIME
 pDisableFatigue              = ["pDisableFatigue",              1] call BIS_fnc_getParamValue; // DISABLE FATIGUE SYSTEM (LOOP)
 pCustomAimCoef               = ["pCustomAimCoef",               1] call BIS_fnc_getParamValue; // SET PLAYER CUSTOM AIM COEF (LOOP)
@@ -68,12 +69,12 @@ if (missionNameSpace getVariable ["pRandomTime",0] > 0) then
 /////////////////////////////////////////////////////////////////////////////////////////////
 // DISABLE RADIO MESSAGES TO BE HEARD AND SHOWN IN THE LEFT LOWER CORNER - v2025-02-12
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pDisableRadioMessages",0] == 1) then {enableRadio false};
+if (missionNameSpace getVariable ["pDisableRadioMessages",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then {enableRadio false};
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // SCRIPT TO DISABLE ALL CONVERSATIONS - v2025-02-08
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pDisableConversation",0] == 1) then
+if (missionNameSpace getVariable ["pDisableConversation",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	0 spawn
 	{
@@ -94,7 +95,7 @@ if (missionNameSpace getVariable ["pDisableConversation",0] == 1) then
 /////////////////////////////////////////////////////////////////////////////////////////////
 // CHECK IF ALL PLAYERS ARE INCAPACITATED AND END MISSION(by Moerderhoschi) - v2025-02-08
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pCheckAllPlayerIncapacitated",0] == 1) then
+if (missionNameSpace getVariable ["pCheckAllPlayerIncapacitated",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	if (isServer && {isMultiplayer}) then
 	{
@@ -126,7 +127,7 @@ if (missionNameSpace getVariable ["pCheckAllPlayerIncapacitated",0] == 1) then
 // FUN BARRELS WITH EXPLOSIONS AND FLYING AROUND(original .sqs script by JBOY) - v2025-02-08
 // https://forums.bohemia.net/forums/topic/174218-jboy-burningexploding-barrel-script-released/
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pFunBarrles",0] == 1) then
+if (missionNameSpace getVariable ["pFunBarrles",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	if (isServer) then
 	{
@@ -169,7 +170,7 @@ if (missionNameSpace getVariable ["pFunBarrles",0] == 1) then
 /////////////////////////////////////////////////////////////////////////////////////////////
 // VEHICLES BIG EXPLOSIONS(by Moerderhoschi) - v2025-02-08
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pVehiclesBigExplosions",0] == 1) then
+if (missionNameSpace getVariable ["pVehiclesBigExplosions",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	if (isServer) then
 	{
@@ -242,7 +243,7 @@ if (missionNameSpace getVariable ["pVehiclesBigExplosions",0] == 1) then
 /////////////////////////////////////////////////////////////////////////////////////////////
 // FUELTANKS BIG EXPLOSIONS(by Moerderhoschi) - v2025-02-08
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pFuelTanksBigExplosions",0] == 1) then
+if (missionNameSpace getVariable ["pFuelTanksBigExplosions",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	if (isServer) then
 	{
@@ -304,7 +305,7 @@ if (missionNameSpace getVariable ["pFuelTanksBigExplosions",0] == 1) then
 /////////////////////////////////////////////////////////////////////////////////////////////
 // MAP MARKERS FOR PLAYERS(by Moerderhoschi) - v2025-02-08
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pPlayerMapMarkers",0] == 1) then
+if (missionNameSpace getVariable ["pPlayerMapMarkers",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	if (hasInterface) then
 	{
@@ -360,7 +361,7 @@ if (missionNameSpace getVariable ["pPlayerMapMarkers",0] == 1) then
 // FOGGY BREATH FOR ALL UNITS(original script by tpw) - v2025-02-08
 // https://forums.bohemia.net/forums/topic/109151-simple-breath-fog-script/
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pFoggyBreath",0] == 1) then
+if (missionNameSpace getVariable ["pFoggyBreath",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	if (hasInterface) then
 	{
@@ -467,9 +468,12 @@ if (missionNameSpace getVariable ["pFoggyBreath",0] == 1) then
 /////////////////////////////////////////////////////////////////////////////////////////////
 if
 (
-	missionNameSpace getVariable ["pDisableFatigue",0] == 1
-	OR {missionNameSpace getVariable ["pCustomAimCoef",0] == 1}
-	OR {missionNameSpace getVariable ["pPlayerSetUnitTrait",0] == 1}
+	(
+		missionNameSpace getVariable ["pDisableFatigue",0] == 1
+		OR {missionNameSpace getVariable ["pCustomAimCoef",0] == 1}
+		OR {missionNameSpace getVariable ["pPlayerSetUnitTrait",0] == 1}
+	)
+	&& {missionNameSpace getVariable ["pParamPreset",0] == 0}
 )
 then
 {
@@ -516,7 +520,7 @@ then
 /////////////////////////////////////////////////////////////////////////////////////////////
 // INFLAME FIREPLACES AT NIGHTTIME(by Moerderhoschi) - v2025-02-08
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pInflameFiresAtNight",0] == 1) then
+if (missionNameSpace getVariable ["pInflameFiresAtNight",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	if (isServer) then
 	{
@@ -560,7 +564,7 @@ if (missionNameSpace getVariable ["pInflameFiresAtNight",0] == 1) then
 /////////////////////////////////////////////////////////////////////////////////////////////
 // REPLACE RPG18 WITH RPG-7(by Moerderhoschi) - v2025-02-08
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pReplaceRPG18",0] == 1) then
+if (missionNameSpace getVariable ["pReplaceRPG18",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	if (isServer) then
 	{
@@ -608,7 +612,7 @@ if (missionNameSpace getVariable ["pReplaceRPG18",0] == 1) then
 // github: https://github.com/Moerderhoschi/arma3_mdhAiTracer
 // steam mod version: https://steamcommunity.com/sharedfiles/filedetails/?id=3437872589
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pReplaceAiMagsWithTracer",0] == 1) then
+if (missionNameSpace getVariable ["pReplaceAiMagsWithTracer",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	0 spawn
 	{
@@ -714,7 +718,7 @@ if (missionNameSpace getVariable ["pReplaceAiMagsWithTracer",0] == 1) then
 // github: https://github.com/Moerderhoschi/arma3_mdhAiAvoidLaydown
 // steam mod version: https://steamcommunity.com/sharedfiles/filedetails/?id=3438379619
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pAvoidAiLayingDown",0] == 1) then
+if (missionNameSpace getVariable ["pAvoidAiLayingDown",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	0 spawn
 	{
@@ -815,7 +819,7 @@ if (missionNameSpace getVariable ["pAvoidAiLayingDown",0] == 1) then
 // github: https://github.com/Moerderhoschi/arma3_mdhAiStayLowInCombat
 // steam mod version: https://steamcommunity.com/sharedfiles/filedetails/?id=3447902000
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pAiStayLowInCombat",0] == 1 && {missionNameSpace getVariable ["pAvoidAiLayingDown",0] == 0}) then
+if (missionNameSpace getVariable ["pAiStayLowInCombat",0] == 1 && {missionNameSpace getVariable ["pAvoidAiLayingDown",0] == 0} && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	0 spawn
 	{
@@ -912,7 +916,7 @@ if (missionNameSpace getVariable ["pAiStayLowInCombat",0] == 1 && {missionNameSp
 /////////////////////////////////////////////////////////////////////////////////////////////
 // AVOID AI FLEEING(by Moerderhoschi) - v2025-02-08
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pAvoidAiFleeing",0] == 1) then
+if (missionNameSpace getVariable ["pAvoidAiFleeing",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	if (isServer) then
 	{
@@ -933,7 +937,7 @@ if (missionNameSpace getVariable ["pAvoidAiFleeing",0] == 1) then
 // github: https://github.com/Moerderhoschi/arma3_mdhBRIM
 // steam mod version: https://steamcommunity.com/sharedfiles/filedetails/?id=753249732
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pMdhBRIM",0] == 1 && {isMultiplayer}) then
+if (missionNameSpace getVariable ["pMdhBRIM",0] == 1 && {isMultiplayer} && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	0 spawn
 	{
@@ -1061,12 +1065,12 @@ if (missionNameSpace getVariable ["pMdhBRIM",0] == 1 && {isMultiplayer}) then
 		};
 
 		_markers = [];
-		sleep (5 + random 2);
+		sleep (10 + random 2);
 		while {missionNameSpace getVariable ["pMdhBRIM",_defaultValue] == _valueCheck} do
 		{
-			if (_env) then {call _mdhFnc};
+			if (_env && {[player] call BIS_fnc_reviveEnabled}) then {call _mdhFnc};
 			sleep (4 + random 2);
-			if (hasInterface) then {call _diary};
+			if (hasInterface && {[player] call BIS_fnc_reviveEnabled}) then {call _diary};
 		};
 		{deleteMarkerLocal _x} forEach _markers;
 	};
@@ -1077,7 +1081,7 @@ if (missionNameSpace getVariable ["pMdhBRIM",0] == 1 && {isMultiplayer}) then
 // github: https://github.com/Moerderhoschi/arma3_mdhFPVDroneRPG
 // steam mod version: https://steamcommunity.com/sharedfiles/filedetails/?id=3361183268
 /////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pMdhFPVDroneRPG",0] == 1) then
+if (missionNameSpace getVariable ["pMdhFPVDroneRPG",0] == 1 && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	0 spawn
 	{
@@ -1257,7 +1261,7 @@ if (missionNameSpace getVariable ["pMdhFPVDroneRPG",0] == 1) then
 // github: https://github.com/Moerderhoschi/arma3_mdhRagdoll
 // steam mod version: https://steamcommunity.com/sharedfiles/filedetails/?id=3387437564
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pAiGetMoreDamageAtHit",0] == 1 OR missionNameSpace getVariable ["pAiRagdollAtHit",0] == 1) then
+if ((missionNameSpace getVariable ["pAiGetMoreDamageAtHit",0] == 1 OR missionNameSpace getVariable ["pAiRagdollAtHit",0] == 1) && {missionNameSpace getVariable ["pParamPreset",0] == 0}) then
 {
 	0 spawn
 	{
@@ -1333,11 +1337,20 @@ if (missionNameSpace getVariable ["pAiGetMoreDamageAtHit",0] == 1 OR missionName
 									if (!(_u getVariable ["mdhEnemyDamageEhForceHit",false])) then
 									{
 										_u setVariable ["mdhEnemyDamageEhForceHit",true];
-										[_u] spawn
+										[_u, _selection, _source] spawn
 										{
-											params ["_u"];
+											params ["_u", "_selection", "_source"];
 											if (!alive _u) exitWith {};
-											_u addForce [[0,0,0], [0,0,0], false]; // reduce warping on ground
+											if (1>0) then
+											{
+												_u addForce [[0,0,0], [0,0,0], false]; // reduce warping on ground
+											}
+											else
+											{
+												_v = getposWorld _source vectorFromTo getPosWorld _u;
+												_v = [(_v#0) * 100, (_v#1) * 100, 0];
+												_u addForce [_v, _u selectionPosition _selection, false]; // old version with to strong ragdoll
+											};
 											sleep 3;
 											if (!alive _u) exitWith {};
 											_u setUnconscious true;
@@ -1485,7 +1498,7 @@ if (missionNameSpace getVariable ["pAiGetMoreDamageAtHit",0] == 1 OR missionName
 // github: https://github.com/Moerderhoschi/arm3_mdhRevive
 // steam:  https://steamcommunity.com/sharedfiles/filedetails/?id=3435005893
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
+if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer} && {missionNameSpace getVariable ["pParamPreset",0] in [0,2,3]}) then
 {
 	0 spawn
 	{
@@ -1581,7 +1594,7 @@ if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
 			};
 		};
 
-		if (hasInterface) then
+		if (hasInterface && {missionNameSpace getVariable ["pMdhRevive",0] == 1} && {isMultiplayer} && {missionNameSpace getVariable ["pParamPreset",0] in [0,3]}) then
 		{
 			uiSleep 0.3;
 			call _diary;
@@ -1591,7 +1604,6 @@ if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
 		sleep (1 + random 1);
 		bis_reviveParam_mode = 1;
 		bis_revive_unconsciousStateMode = 0;
-		_p = missionNameSpace getVariable ["pMdhRevive",0];
 		sleep 0.5;
 		if (hasInterface) then {call BIS_fnc_reviveInit};
 		sleep 1;
@@ -1599,7 +1611,7 @@ if (missionNameSpace getVariable ["pMdhRevive",0] > 0 && {isMultiplayer}) then
 		bis_revive_durationmedic = 2;
 		bis_revive_medicspeedmultiplier = 3;
 		bis_revive_bleedoutduration = missionNameSpace getVariable["pMdhReviveBleedoutTime", 4^9];
-		if (_p == 2) exitWith {bis_revive_bleedoutduration = 300};
+		if (missionNameSpace getVariable ["pMdhRevive",0] == 2 OR missionNameSpace getVariable ["pParamPreset",0] == 2) exitWith {bis_revive_bleedoutduration = 300};
 		if (hasInterface) then 
 		{
 			player setVariable ["mdhRevivePlayerSide",(side group player)];

@@ -1,0 +1,6 @@
+class pParamPreset{title = "Preset";texts[] = {
+"Use Parameters"
+,"No MDH Mission Enhancements ( ignore Parameters and use Arma 3 default: Fatigue, AimCoef, Converstaions, Fleeing, Stance + noRevive )"
+,"No MDH Mission Enhancements ( ignore Parameters and use Arma 3 default: Fatigue, AimCoef, Converstaions, Fleeing, Stance + Arma 3 Revive )"
+,"No MDH Mission Enhancements ( ignore Parameters and use Arma 3 default: Fatigue, AimCoef, Converstaions, Fleeing, Stance + MDH Revive )"
+};values[] = {0, 1, 2, 3};default = 0;};
